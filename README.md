@@ -1,16 +1,22 @@
-# flutter_api_demo
+# ตัวอย่างไฟล์
+- [/lib/main.dart](/lib/main.dart)
 
-A new Flutter project.
+# ตั้งค่า Certificate(X509Certificate)
+- เพิ่มคลาส (class)
+```dartclass MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext? context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+```
 
-## Getting Started
+- เพิ่ม `HttpOverrides.global = new MyHttpOverrides();` ในฟังก์ชัน main()
+```dart
+void main() {
+  HttpOverrides.global = new MyHttpOverrides();
+  runApp(MyApp());
+}
+```
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
