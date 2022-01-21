@@ -111,12 +111,13 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return ListView.builder(
-                  itemCount: snapshot.data.length,
-                  padding: EdgeInsets.all(16.0),
-                  itemBuilder: (context, i) {
-                    //หากไม่สร้าง Object สามารถเรียกใช้งานแบบนี้ได้เลย
-                    return _buildRow(snapshot.data[0]["name"].toString());
-                  });
+                itemCount: snapshot.data.length,
+                padding: const EdgeInsets.all(16.0),
+                itemBuilder: (context, i) {
+                  //หากไม่สร้าง Object สามารถเรียกใช้งานแบบนี้ได้เลย
+                  return _buildRow(snapshot.data[0]["name"].toString());
+                },
+              );
             } else if (snapshot.hasError) {
               return Text("${snapshot.error}");
             }
